@@ -3,3 +3,4 @@ __pycache__
 utils/__pycache__
 app/__pycache__
 .vscode
+*.db
