@@ -21,6 +21,8 @@ def TinyShortner(big_url: str) -> str:
 @click.option("--edit", help="To Edit or Update your file", is_flag=True)
 @click.option("--key", default="", help="Your Private Key to edit or update")
 def run(file, edit, key):
+    """ Host page or file from your Terminal """
+
     with open(file, "r") as file_obj:
         try:
             source = file_obj.read()
