@@ -1,6 +1,3 @@
-import base64
-import collections
-import io
 import zlib
 
 from cryptography.fernet import Fernet

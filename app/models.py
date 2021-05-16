@@ -5,6 +5,7 @@ from app import database as db
 from utils.generators import generate_pri_key, generate_pub_key
 from utils.processing import Text
 
+
 class SourceCode(db.Model):
     __tablename__ = "sourcecodes"
 
@@ -17,10 +18,10 @@ class SourceCode(db.Model):
     time = db.Column(db.DateTime, index=True, default=datetime.utcnow)
 
     def __repr__(self):
-        return f'SourceCode({self.public_key})'
+        return f"SourceCode({self.public_key})"
+
 
 class DATABASE:
-
     @staticmethod
     def all_public_key():
         return [i.public_key for i in SourceCode.query.all()]
@@ -70,8 +71,8 @@ class DATABASE:
         #     processor = Media.encode_and_compress(data)
         # else:
         processor = Text.encode_and_compress(data)
-        encoded_data = processor.get('token')
-        key = processor.get('key')
+        encoded_data = processor.get("token")
+        key = processor.get("key")
         if encoded_data in DATABASE.all_sources_code():
             return DATABASE.get_pub_key_from_source(encoded_data)
 
@@ -82,32 +83,32 @@ class DATABASE:
             public_key=pub_key,
             private_key=pri_key,
             key=key,
-            mimetype=mimetype
+            mimetype=mimetype,
         )
         db.session.add(src_code)
         db.session.commit()
 
         return {
-            'public_key': pub_key,
-            'private_key': pri_key,
-            'key': key,
-            'time': src_code.time,
-            'mimetype': src_code.mimetype
+            "public_key": pub_key,
+            "private_key": pri_key,
+            "key": key,
+            "time": src_code.time,
+            "mimetype": src_code.mimetype,
         }
 
     @staticmethod
     def change_source_by_private_key(pri_key, new_source):
         srccode = SourceCode().query.filter_by(private_key=pri_key).first()
         processor = Text.encode_and_compress(new_source)
-        srccode.src = processor.get('token')
-        srccode.key = processor.get('key')
+        srccode.src = processor.get("token")
+        srccode.key = processor.get("key")
         srccode.time = datetime.utcnow()
         db.session.commit()
 
         return {
-            'public_key': srccode.public_key,
-            'private_key': srccode.private_key,
-            'key': srccode.key,
-            'time': srccode.time,
-            'mimetype': srccode.mimetype
+            "public_key": srccode.public_key,
+            "private_key": srccode.private_key,
+            "key": srccode.key,
+            "time": srccode.time,
+            "mimetype": srccode.mimetype,
         }
