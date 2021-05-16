@@ -20,6 +20,8 @@ Usage of Instanthost is very simple
 
 ### Host new page
 
+![Demo](./assets/demo.gif)
+
 ```bash
 
 instanthost ~/path/to/file
