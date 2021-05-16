@@ -1,1 +1,73 @@
 # Instant-Host
+
+Host satitc pages and Files from your Terminal. It can host your html, json, xml and many non-binary files. All hosted files are encrypted and commpressed. 
+
+## Installation
+
+```bash
+$ git clone https://github.com/yogeshwaran01/Instant-Host
+
+$ cd Instant-Host
+
+$ python3 setup.py install
+```
+
+## Usage 
+
+Usage of Instanthost is very simple
+
+### Host new page
+
+```bash
+
+instanthost ~/path/to/file
+
+```
+
+Output is like this
+
+```
+✌️  Hosted Sucessfully ✨
+
+created_at: 05/16/2021, 16:39:56
+
+hosted_at: http://instant-host.herokuapp.com/render/U4uhdM4
+
+mimetype: application/xml
+
+private_key: U4uhdM4bnovt
+
+public_key: U4uhdM4
+
+tiny_url: https://tinyurl.com/yehcy54n
+```
+
+### Editing the existing page
+
+You can change the data in the file without causing any issues to link with the secret private key. Store your private key for editing content. 
+
+```bash
+instanthost ~/path/to/new/file --edit --key <your-private-key>
+```
+
+Ouput is 
+
+```
+✌️  Hosted Sucessfully ✨
+
+hosted_at: http://instant-host.herokuapp.com/render/U4uhdM4
+
+mimetype: application/xml
+
+private_key: U4uhdM4bnovt
+
+public_key: U4uhdM4
+
+updated_at: 05/16/2021, 16:43:34
+
+tiny_url: https://tinyurl.com/yehcy54n
+```
+
+Like this you can host all non-binary type file from your terminal
+
+you can host your simple static web page, blog post and etc ..
