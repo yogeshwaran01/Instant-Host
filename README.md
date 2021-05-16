@@ -2,7 +2,7 @@
 
 [![Python application](https://github.com/yogeshwaran01/Instant-Host/actions/workflows/python-app.yml/badge.svg)](https://github.com/yogeshwaran01/Instant-Host/actions/workflows/python-app.yml)
 
-Host satitc pages and Files from your Terminal. It can host your html, json, xml and many non-binary files. All hosted files are encrypted and commpressed. 
+Host static pages and Files from your Terminal. It can host your HTML, JSON, XML, and many non-binary files. All hosted files are encrypted and compressed.
 
 ## Installation
 
