@@ -44,7 +44,7 @@ def run(file, edit, key):
     data = response.json()
     short_url = TinyShortner(data["hosted_at"])
     data.update({"tiny_url": short_url})
-    click.echo("✌️  Hosted Sucessfully ✨" + "\n")
+    click.echo("✌️  Hosted Successfully ✨" + "\n")
     for i, j in data.items():
         click.echo(f"{i}: {j}" + "\n")
 

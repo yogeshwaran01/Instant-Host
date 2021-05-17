@@ -31,7 +31,7 @@ instanthost ~/path/to/file
 Output is like this
 
 ```
-✌️  Hosted Sucessfully ✨
+✌️  Hosted Successfully ✨
 
 created_at: 05/16/2021, 16:39:56
 
@@ -54,10 +54,10 @@ You can change the data in the file without causing any issues to link with the 
 instanthost ~/path/to/new/file --edit --key <your-private-key>
 ```
 
-Ouput is 
+Output is 
 
 ```
-✌️  Hosted Sucessfully ✨
+✌️  Hosted Successfully ✨
 
 hosted_at: http://instant-host.herokuapp.com/render/U4uhdM4
 
