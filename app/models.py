@@ -112,3 +112,11 @@ class DATABASE:
             "time": srccode.time,
             "mimetype": srccode.mimetype,
         }
+
+    @staticmethod
+    def remove_source_by_private_key(pri_key):
+        srccode = SourceCode().query.filter_by(private_key=pri_key).first()
+        db.session.delete(srccode)
+        db.session.commit()
+
+        return True
