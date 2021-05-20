@@ -77,3 +77,8 @@ def test_api(client):
     assert response_4.status_code == 200
     data_rendered = response_4.get_json()
     assert data_rendered == json.loads(sample_json_test_2)
+    response_5 = client.post(
+        "/api/delete", json={"key": private_key}
+    )
+    assert response_5.status_code == 200
+    assert response_5.get_json() == {"message": f"Source of '{private_key}' Removed Successfully"}
