@@ -69,3 +69,15 @@ def send_source(pub_key):
 
     else:
         return jsonify({"error": "No Key Found"})
+
+
+@app.route("/api/delete")
+def del_source():
+    if request.json is None:
+        return jsonify({'error': "Private key is required to delete the post"})
+    pri_key = request.json.get('key')
+    if pri_key in DATABASE.all_private_key():
+        DATABASE.remove_source_by_private_key(pri_key)
+        return jsonify({"message": f"Source of '{pri_key}' Removed Successfully"})
+    else:
+        return jsonify({"error": "Key is Invalid"})
