@@ -71,7 +71,7 @@ def send_source(pub_key):
         return jsonify({"error": "No Key Found"})
 
 
-@app.route("/api/delete")
+@app.route("/api/delete", methods=["POST"])
 def del_source():
     if request.json is None:
         return jsonify({'error': "Private key is required to delete the post"})
