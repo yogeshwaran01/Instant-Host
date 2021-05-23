@@ -5,6 +5,7 @@ import requests
 
 host_api = "http://instant-host.herokuapp.com/api/host"
 edit_api = "http://instant-host.herokuapp.com/api/edit"
+delete_api = "http://instant-host.herokuapp.com/api/delete"
 
 
 def TinyShortner(big_url: str) -> str:
@@ -23,6 +24,13 @@ def TinyShortner(big_url: str) -> str:
 def run(file, edit, key):
     """ Host page or file from your Terminal """
 
+    if file == "delete":
+        response = requests.post(delete_api, json={"key": key})
+        if "error" in response.text:
+            click.echo("👎 Unable to delete the file 😞")
+        else:
+            click.echo("✌️  Deleted Successfully ✨")
+        exit()
     with open(file, "r") as file_obj:
         try:
             source = file_obj.read()
