@@ -14,7 +14,7 @@ $ cd Instant-Host
 $ python3 setup.py install
 ```
 
-## Usage 
+## Usage
 
 Usage of Instanthost is very simple
 
@@ -48,13 +48,13 @@ tiny_url: https://tinyurl.com/yehcy54n
 
 ### Editing the existing page
 
-You can change the data in the file without causing any issues to link with the secret private key. Store your private key for editing content. 
+You can change the data in the file without causing any issues to link with the secret private key. Store your private key for editing content.
 
 ```bash
 instanthost ~/path/to/new/file --edit --key <your-private-key>
 ```
 
-Output is 
+Output is
 
 ```
 ✌️  Hosted Successfully ✨
@@ -70,6 +70,12 @@ public_key: U4uhdM4
 updated_at: 05/16/2021, 16:43:34
 
 tiny_url: https://tinyurl.com/yehcy54n
+```
+
+### Delete the existing page
+
+```bash
+instanthost delete --key <your-private-key>
 ```
 
 Like this you can host all non-binary type file from your terminal
