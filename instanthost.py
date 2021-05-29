@@ -1,61 +1,109 @@
-import mimetypes
+# -*- coding: utf-8 -*-
+"""
+    instanthost
+    ~~~~~~~~~~
 
-import click
-import requests
+    A cli tool to host any non-binary files
+
+    :license: MIT License
+"""
+
+__package__ = "instagramy"
+__version__ = "2.0"
+__description__ = "A cli tool to host any non-binary files"
+__url__ = "https://github.com/yogeshwaran01/Instant-Host"
+__author__ = "YOGESHWARAN R <yogeshin247@gmail.com>"
+__license__ = "MIT License"
+__copyright__ = "Copyright 2021 Yogeshwaran R"
+
+import argparse
+import json
+import mimetypes
+import urllib.parse
+import urllib.request
 
 host_api = "http://instant-host.herokuapp.com/api/host"
 edit_api = "http://instant-host.herokuapp.com/api/edit"
 delete_api = "http://instant-host.herokuapp.com/api/delete"
+short_api = "https://tinyurl.com/api-create.php"
 
 
-def TinyShortner(big_url: str) -> str:
+def short(big_url: str):
     """
     Function short the big urls to tiny by Tiny Api
     """
-    return requests.post(
-        "https://tinyurl.com/api-create.php", data={"url": big_url}
-    ).text
+
+    req = urllib.request.Request(short_api)
+    data = urllib.parse.urlencode({"url": big_url}).encode("utf-8")
+    res = urllib.request.urlopen(req, data)
+    return res.read().decode()
 
 
-@click.command()
-@click.argument("file")
-@click.option("--edit", help="To Edit or Update your file", is_flag=True)
-@click.option("--key", default="", help="Your Private Key to edit or update")
-def run(file, edit, key):
-    """ Host page or file from your Terminal """
+def post(url: str, json_data: dict):
+    """
+    Post data to API and return the response data
+    """
 
-    if file == "delete":
-        response = requests.post(delete_api, json={"key": key})
-        if "error" in response.text:
-            click.echo("👎 Unable to delete the file 😞")
+    req = urllib.request.Request(url)
+    req.add_header("Content-Type", "application/json; charset=utf-8")
+    data = json.dumps(json_data).encode("utf-8")
+    response = urllib.request.urlopen(req, data)
+    return json.loads(response.read().decode())
+
+
+def main():
+    parser = argparse.ArgumentParser(
+        description="Host page or any non-binary file from your Terminal"
+    )
+
+    parser.add_argument("file")
+    parser.add_argument(
+        "--edit",
+        required=False,
+        help="To Edit or Update your file",
+        action="store_true",
+    )
+    parser.add_argument(
+        "--key", required=False, help="Your Private Key for edit or update and delete"
+    )
+
+    arguments = parser.parse_args()
+
+    if arguments.file == "delete":
+        if arguments.key is None:
+            print("👎 Please provide the private key 😞")
+            exit()
+        response = post(delete_api, json_data={"key": arguments.key})
+        if "error" in response:
+            print("👎 Unable to delete the file 😞")
         else:
-            click.echo("✌️  Deleted Successfully ✨")
+            print("✌️  Deleted Successfully ✨")
+
         exit()
-    with open(file, "r") as file_obj:
+
+    with open(arguments.file, "r") as file_obj:
         try:
             source = file_obj.read()
         except UnicodeDecodeError:
-            click.echo("👎 Binary file are not supported 😞")
+            print("👎 Binary file are not supported 😞")
             exit()
-    if edit:
-        response = requests.post(edit_api, json={"source": source, "key": key})
+
+    if arguments.edit:
+        response = post(edit_api, json_data={"source": source, "key": arguments.key})
+
     else:
-        mimetype = mimetypes.guess_type(file)[0]
+        mimetype = mimetypes.guess_type(arguments.file)[0]
         if mimetype:
-            response = requests.post(
-                host_api, json={"source": source, "mimetype": mimetype}
+            response = post(
+                host_api, json_data={"source": source, "mimetype": mimetype}
             )
         else:
-            click.echo("👎 Unable Detect the Mimetype of the File 😞")
+            print("👎 Unable Detect the Mimetype of the File 😞")
             exit()
 
-    data = response.json()
-    short_url = TinyShortner(data["hosted_at"])
-    data.update({"tiny_url": short_url})
-    click.echo("✌️  Hosted Successfully ✨" + "\n")
-    for i, j in data.items():
-        click.echo(f"{i}: {j}" + "\n")
+    shorted_url = short(response["hosted_at"])
+    response.update({"tiny_url": shorted_url})
+    print("✌️  Hosted Successfully ✨" + "\n")
 
-
-if __name__ == "__main__":
-    run()
+    for i, j in response.items():
+        print(f"{i}: {j}" + "\n")
