@@ -9,7 +9,7 @@
 """
 
 __package__ = "instagramy"
-__version__ = "2.0"
+__version__ = "1.1"
 __description__ = "A cli tool to host any non-binary files"
 __url__ = "https://github.com/yogeshwaran01/Instant-Host"
 __author__ = "YOGESHWARAN R <yogeshin247@gmail.com>"
