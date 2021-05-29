@@ -7,11 +7,7 @@ Host static pages and Files from your Terminal. It can host your HTML, JSON, XML
 ## Installation
 
 ```bash
-$ git clone https://github.com/yogeshwaran01/Instant-Host
-
-$ cd Instant-Host
-
-$ python3 setup.py install
+$ pip install instanthost
 ```
 
 ## Usage
