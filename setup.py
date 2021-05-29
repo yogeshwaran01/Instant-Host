@@ -22,6 +22,6 @@ setup(
     download_url="https://raw.githubusercontent.com/yogeshwaran01/Instant-Host/master/instanthost.py",
     entry_points="""
         [console_scripts]
-        instanthost=instanthost
+        instanthost=instanthost:main
     """,
 )
