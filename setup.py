@@ -5,7 +5,7 @@ with open("README.md", "r") as file_obj:
 
 setup(
     name="instanthost",
-    version="2.0",
+    version="1.1",
     license="MIT",
     url="https://github.com/yogeshwaran01/Instant-Host",
     description="A cli tool to host any non-binary files",
