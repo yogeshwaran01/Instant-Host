@@ -4,6 +4,10 @@
 
 Host static pages and Files from your Terminal. It can host your HTML, JSON, XML, and many non-binary files. All hosted files are encrypted and compressed.
 
+## Api Documenation
+
+Full Documenation for [InstantHost](https://yogeshwaran01.github.io/post?post=Instantly-Host-any-non-binary-files-from-your-terminal) API
+
 ## Installation
 
 ```bash
