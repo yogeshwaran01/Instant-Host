@@ -81,10 +81,3 @@ def del_source():
         return jsonify({"message": f"Source of '{pri_key}' Removed Successfully"})
     else:
         return jsonify({"error": "Key is Invalid"})
-
-
-@app.after_request
-def enabale_cors(res):
-    header = res.headers
-    header['Access-Control-Allow-Origin'] = '*'
-    return res
