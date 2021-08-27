@@ -82,3 +82,9 @@ def test_api(client):
     )
     assert response_5.status_code == 200
     assert response_5.get_json() == {"message": f"Source of '{private_key}' Removed Successfully"}
+
+
+def test_corns(client):
+    response = client.get("/api")
+    headers = response.headers
+    assert headers['Access-Control-Allow-Origin'] == '*'
